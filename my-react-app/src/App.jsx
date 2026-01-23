@@ -1,15 +1,16 @@
-function App(){
+import Encabezado from "./Encabezado.jsx";
 
-  
-  return (
-  <div>
-  <h1>5° A EVND :b</h1>
-  <h2>Profesor:</h2>
-  <h3>M.T.I. Ricardo Luna Santos</h3>
-  <UserComponent />
-  <ProfileComponent />
-  <FeedComponent />
-  </div>
+function App(){
+    return (
+      <div>
+        <Encabezado />
+        <h1>5° A EVND :b</h1>
+        <h2>Profesor:</h2>
+        <h3>M.T.I. Ricardo Luna Santos</h3>
+        <UserComponent />
+        <ProfileComponent />
+        <FeedComponent />
+      </div>
   )
 }
 

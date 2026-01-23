@@ -1,0 +1,17 @@
+h2{
+    color: palevioletred;
+}
+h1{
+    color: plum;
+}
+.Encabezado {
+    background-color: plum;
+
+}
+.Logo img {
+    height: 100px;
+}
+
+.Redes li img {
+    height: 50px;
+}
