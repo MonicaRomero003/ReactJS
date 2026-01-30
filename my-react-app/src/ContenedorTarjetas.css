@@ -1,0 +1,23 @@
+.ContenedorTarjeta{
+    width: 90%;
+    height: 400px;
+    margin: 0 auto ;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.Tarjeta{
+    background-color: whitesmoke;
+    width: 20%;
+    height: 350px;
+    margin: 20px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+.Tarjeta img{
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+}
