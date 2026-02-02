@@ -1,18 +1,23 @@
-
+import './App.css' ;
 import ContenedorTarjeta from "./contenedorTarjeta.jsx";
 import Encabezado from "./Encabezado.jsx";
+import ContenedorInformacion from "./Informacion.jsx";
+import ContenedorPie from "./ContenedorPie.jsx";
+
 
 function App(){
     return (
-      <div>
+      <div className="App">
         <Encabezado />
         <ContenedorTarjeta />
-        <h1>5° A EVND :b</h1>
+        <ContenedorInformacion /> 
+        <ContenedorPie />
+        {/*<h1>5° A EVND :b</h1>
         <h2>Profesor:</h2>
         <h3>M.T.I. Ricardo Luna Santos</h3>
         <UserComponent />
         <ProfileComponent />
-        <FeedComponent />
+        <FeedComponent />*/}
       </div>
   )
 }

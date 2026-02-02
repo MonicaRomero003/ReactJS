@@ -1,0 +1,28 @@
+.ContenedorPie {
+    width: 100%;
+    display:flex;
+    margin: 0 auto ;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    font-family: ligas;
+    /*background: linear-gradient(90deg, #222, #0c3866,#0c3866,#222 );*/
+    background:linear-gradient(90deg, #0c3866, #49c0b6,#222,#ce181e,#007cc0,#ffc20e );
+    font-size: 20px;
+}
+.Pie {
+    width: 50%;
+    text-align : left;
+    margin-left: 50px;
+    
+}
+.Pie2 {
+    width: 50%;
+    text-align : right;
+    margin-right: 50px;
+}
+.ContenedorPie img {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(2px 2px 5px rgba(255, 194, 14, 1));
+}
