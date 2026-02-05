@@ -26,9 +26,10 @@
     filter: drop-shadow(0px 0px 10px rgba(0, 2, 34, 0.8));
 }
 .Tarjeta img{
-    width: 150px;
+    width: auto;
     height: 150px;
     padding: 10px;
+    margin-top: 10px;
 }
 .Tarjeta a{
     text-decoration:underline solid #ffc20e 2px;
