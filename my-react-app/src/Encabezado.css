@@ -28,7 +28,7 @@
     display: flex;
     list-style: none;
     gap: 30px;
-    font-size: 30px;
+    font-size: 25px;
     font-family: titulos;
     background-color:#0c3866;
     margin-top: 50px;
@@ -37,12 +37,12 @@
     justify-content: center;
     align-items: center;
 }
-.menuDiv ul li a {
+.menuDiv ul li {
     text-decoration: none;
     color: white;
 
 }
-.menuDiv ul li a:hover {
+.menuDiv ul li:hover {
     text-decoration: none;
     color: black;
     background-color: #49c0b6;

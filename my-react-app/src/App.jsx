@@ -1,28 +1,28 @@
 import './App.css' ;
-import ContenedorTarjeta from "./contenedorTarjeta.jsx";
+import { useState} from "react";
+import ContenedorTarjeta from "./ContenedorTarjeta.jsx";
 import Encabezado from "./Encabezado.jsx";
 import ContenedorInformacion from "./Informacion.jsx";
 import ContenedorPie from "./ContenedorPie.jsx";
 
 
 function App(){
+  const [vista, setVista] = useState("Inicio"); 
     return (
       <div className="App">
-        <Encabezado />
-        <ContenedorTarjeta />
+        <Encabezado cambiarVista={setVista} />
+        <ContenedorTarjeta vista={vista} />
         <ContenedorInformacion /> 
         <ContenedorPie />
-        {/*<h1>5° A EVND :b</h1>
-        <h2>Profesor:</h2>
-        <h3>M.T.I. Ricardo Luna Santos</h3>
-        <UserComponent />
-        <ProfileComponent />
-        <FeedComponent />*/}
       </div>
   )
 }
 
-function UserComponent(){
+
+
+export default App
+
+/*function UserComponent(){
   const nombre = 'Mon';
   const apellido = 'Romero';
   const nombrecompleto = <h2>El nombre es: {nombre} y su apellido {apellido}</h2>;
@@ -70,6 +70,4 @@ function FeedComponent(){
     </ul>
     </>
   )
-}
-
-export default App
+}*/

@@ -1,25 +1,36 @@
+import AcercaDe from './AcercaDe';
+import PropTypes from 'prop-types';
 import './ContenedorTarjetas.css';
-import imgTarjeta1 from "./assets/Recursos/pc.png";
-import imgTarjeta2 from "./assets/Recursos/pc2.png";
-import imgTarjeta3 from "./assets/Recursos/pc3.png";
-import imgTarjeta4 from "./assets/Recursos/pc4.png";
 
 
-function ContenedorTarjeta() {
+function ContenedorTarjeta({vista}) {
+    const vistas = {
+        "Inicio": <Inicio/>,
+        "AcercaDe": <AcercaDe/>
+    }
     return (
         <div className="ContenedorTarjeta">
-            <Tarjeta titulo="Marcianware" descripcion="Una cosito" img={imgTarjeta1}/>
-            <Tarjeta titulo="Alienware" descripcion="Una pc de alta gama" img={imgTarjeta2}/>
-            <Tarjeta titulo="Olaware" descripcion="Una copia de la pc de alta gama" img={imgTarjeta3}/>
-            <Tarjeta titulo="Cosoware" descripcion="Ni idea bro" img={imgTarjeta4}/> 
+            {vistas[vista] || <Inicio/>}
         </div>
     );
+}
+
+function Inicio(){
+    return(
+        <div className="Inicio">
+            <Tarjeta titulo="Marcianware" descripcion="Una cosito" imagen="https://blogs.windows.com/wp-content/uploads/sites/2/2016/09/aw17_tobil_lnb_00120rb55_gy.png"/>
+            <Tarjeta titulo="Alienware" descripcion="Una pc de alta gama" imagen="https://www.notebookcheck.net/fileadmin/_processed_/webp/Notebooks/News/_nc3/laptop_alienware_x15_r2_nonlit_touchpad_gallery_7-q82-w240-h.webp"/>
+            <Tarjeta titulo="Olaware" descripcion="Una copia de la pc de alta gama" imagen="https://www.jonpeddie.com/wp-content/uploads/2023/08/Alien_R16_001.png"/>
+            <Tarjeta titulo="Cosoware" descripcion="Ni idea bro" imagen="https://cdn.eftm.com/wp-content/uploads/2018/10/aw15r5nt_lnb_05000f90_gy.png"/> 
+        </div>
+    );
+        
 }
 
 function Tarjeta(props){
     return(
         <div className="Tarjeta">
-            <img src={props.img} alt="Imagen de la tarjeta"/>
+            <img src={props.imagen} alt="Imagen de la tarjeta"/>
             <h3>{props.titulo}</h3>
             <p>{props.descripcion}</p>
             <a href="#">Ver más</a>
@@ -27,5 +38,9 @@ function Tarjeta(props){
     )
 
 }
+
+ContenedorTarjeta.propTypes = {
+    vista: PropTypes.string.isRequired
+};
 
 export default ContenedorTarjeta;

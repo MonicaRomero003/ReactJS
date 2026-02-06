@@ -21,7 +21,7 @@ function Pie(){
 function Pie2(){
     return(
     <div className="Pie2">
-    <p>thealienware.com.mx</p>
+    <p>thealienware.com</p>
     </div>
     )  
 }
