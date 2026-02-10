@@ -1,4 +1,8 @@
 import AcercaDe from './AcercaDe';
+import Productos from './Productos';
+import Galeria from './Galeria';
+import Contacto from './Contacto';
+import Sucursales from './Sucursales';
 import PropTypes from 'prop-types';
 import './ContenedorTarjetas.css';
 
@@ -6,7 +10,11 @@ import './ContenedorTarjetas.css';
 function ContenedorTarjeta({vista}) {
     const vistas = {
         "Inicio": <Inicio/>,
-        "AcercaDe": <AcercaDe/>
+        "AcercaDe": <AcercaDe/>,
+        "Productos": <Productos/>,
+        "Galeria": <Galeria/>,
+        "Contacto": <Contacto/>,
+        "Sucursales": <Sucursales/>
     }
     return (
         <div className="ContenedorTarjeta">
