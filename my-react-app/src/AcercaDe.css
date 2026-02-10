@@ -1,0 +1,36 @@
+.Acerca{
+    width: 100%;
+    height: auto;
+    margin: 30px auto ;
+    align-items: center;
+    justify-content: center;
+}
+.AcercaDe{
+    background:linear-gradient(90deg, #0c3866, #49c0b6,#222,#ce181e,#007cc0,#ffc20e );
+    font-size: 30px;
+    font-family: General;
+    width: 90%;
+    height: 500px;
+    margin : 0 auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+
+}
+.AcercaDe h3{
+    font-family: titulos;
+    font-size: 40px;
+    color: #ffc20e;
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px rgba(255, 194, 14, 0.5);
+}
+.AcercaDe p{
+    font-family: general;
+    font-size: 30px;
+    color: #ffc20e;
+    margin: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(206, 24, 30, 0.5);
+}
