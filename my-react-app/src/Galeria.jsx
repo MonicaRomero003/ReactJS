@@ -29,7 +29,6 @@ function Producto(props){
     return(
         <div className="Producto">
             <img src={props.imagen} alt="Imagen de la galeria"/>
-            <h3>{props.titulo}</h3>
             </div>
     )
 
