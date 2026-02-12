@@ -6,8 +6,8 @@
     justify-content: center;
 }
 .AcercaDe{
-    background:linear-gradient(90deg, #0c3866, #49c0b6,#222,#ce181e,#007cc0,#ffc20e );
-    font-size: 30px;
+    background:linear-gradient(90deg, #0c3866,#222,#ce181e,#007cc0);
+    font-size: 20px;
     font-family: General;
     width: 90%;
     height: 500px;
@@ -20,7 +20,7 @@
 }
 .AcercaDe h3{
     font-family: titulos;
-    font-size: 40px;
+    font-size: 30px;
     color: #ffc20e;
     margin-top: 20px;
     text-shadow: 2px 2px 5px rgba(255, 194, 14, 0.5);

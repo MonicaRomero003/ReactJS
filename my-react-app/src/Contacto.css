@@ -1,0 +1,83 @@
+
+.FormularioContacto {
+  width: 85%;
+  margin: 30px auto;
+  padding: 25px;
+  background: linear-gradient(#222, #222, #222, #ce181e);
+  color: #ffc20e;
+  font-family: general;
+  border-radius: 25px;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#222, #222, #222, #ce181e) padding-box,
+    linear-gradient(to right, #0c3866, #49c0b6, #222, #ce181e, #007cc0, #ffc20e) border-box;
+  filter: drop-shadow(0px 0px 10px rgba(0, 2, 34, 0.8));
+}
+
+.FormularioContacto h2, 
+.FormularioContacto h3, 
+.FormularioContacto legend {
+  font-family: titulos;
+  font-size: 30px;
+  color: #49c0b6;
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.FormularioContacto label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 28px;
+  font-family: general;
+  color: #ffc20e;
+}
+
+
+.FormularioContacto input, 
+.FormularioContacto textarea, 
+.FormularioContacto select {
+  width: 95%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #49c0b6;
+  background-color: #111;
+  color: #ffc20e;
+  font-family: general;
+  font-size: 30px;
+  transition: all 0.2s ease;
+}
+
+.FormularioContacto input:focus, 
+.FormularioContacto textarea:focus, 
+.FormularioContacto select:focus {
+  outline: none;
+  border-color: #ffc20e;
+  box-shadow: 0 0 8px #ffc20e;
+}
+
+.FormularioContacto input::placeholder, 
+.FormularioContacto textarea::placeholder {
+  color: #888;
+}
+
+.FormularioContacto input[type="submit"], 
+.FormularioContacto input[type="reset"] {
+  width: 45%;
+  margin: 10px;
+  padding: 12px;
+  background: linear-gradient(to right, #0c3866, #49c0b6, #ce181e);
+  color: #ffc20e;
+  font-family: ligas;
+  font-size: 26px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.FormularioContacto input[type="submit"]:hover, 
+.Contacto input[type="reset"]:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0px 0px 8px rgba(255, 194, 14, 0.8));
+}
