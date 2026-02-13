@@ -58,10 +58,11 @@ function Sucursa() {
         <div key={sucursal.id} className="TarjetaSucursal">
             <img src={sucursal.img} alt={sucursal.nombre} />  
             <p>{sucursal.direccion}</p> 
-            <Mapa lat={sucursal.lat} lng={sucursal.lng} nombre_sucursal={sucursal.nombre_sucursal} />
+            
             
             <p>Tel: {sucursal.telefono}</p> 
             <p>Horario: {sucursal.horario}</p> 
+            <Mapa lat={sucursal.lat} lng={sucursal.lng} nombre_sucursal={sucursal.nombre_sucursal} />
             </div> 
             ))} 
         </div> 
