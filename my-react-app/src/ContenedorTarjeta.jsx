@@ -29,7 +29,7 @@ function Inicio(){
             <Tarjeta titulo="Marcianware" descripcion="Una cosito" imagen="https://blogs.windows.com/wp-content/uploads/sites/2/2016/09/aw17_tobil_lnb_00120rb55_gy.png"/>
             <Tarjeta titulo="Alienware" descripcion="Una pc de alta gama" imagen="https://www.notebookcheck.net/fileadmin/_processed_/webp/Notebooks/News/_nc3/laptop_alienware_x15_r2_nonlit_touchpad_gallery_7-q82-w240-h.webp"/>
             <Tarjeta titulo="Olaware" descripcion="Una copia de la pc de alta gama" imagen="https://www.jonpeddie.com/wp-content/uploads/2023/08/Alien_R16_001.png"/>
-            <Tarjeta titulo="Cosoware" descripcion="Ni idea bro" imagen="https://cdn.eftm.com/wp-content/uploads/2018/10/aw15r5nt_lnb_05000f90_gy.png"/> 
+            <Tarjeta titulo="Cosoware" descripcion="Ni idea bro" imagen="https://s3.ap-southeast-1.amazonaws.com/uploads-store/uploads/all/eNMeIdPJN13EKbXnTaXfaxpXaTTjtEFo2LDttJqM.png"/> 
         </div>
     );
         

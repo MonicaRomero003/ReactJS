@@ -1,3 +1,5 @@
+{/*     
+    
 import { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, Polyline } from '@react-google-maps/api';
 
@@ -13,7 +15,6 @@ function MapaConRutas() {
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
     });
 
-    // Sucursales preestablecidas
     const sucursales = [
         {
             id: 1,
@@ -54,6 +55,7 @@ function MapaConRutas() {
             { enableHighAccuracy: true }
         );
     }, []);
+    
 
     // Opciones para las líneas (polylines)
     const lineOptions = {
@@ -74,7 +76,7 @@ function MapaConRutas() {
                     center={ubicacion}
                     zoom={5}
                 >
-                    {/* Marcador de tu ubicación actual */}
+                    Marcador de tu ubicación actual
                     <Marker
                         position={ubicacion}
                         label="Tu ubicación"
@@ -83,17 +85,17 @@ function MapaConRutas() {
                         }}
                     />
 
-                    {/* Marcadores y líneas para cada sucursal */}
+                    Marcadores y líneas para cada sucursal 
                     {sucursales.map((sucursal) => (
                         <div key={sucursal.id}>
-                            {/* Marcador de la sucursal */}
+                            Marcador de la sucursal 
                             <Marker
                                 position={{ lat: sucursal.lat, lng: sucursal.lng }}
                                 label={sucursal.id.toString()}
                                 title={sucursal.nombre_sucursal}
                             />
 
-                            {/* Línea desde tu ubicación hasta la sucursal */}
+                
                             <Polyline
                                 path={[
                                     ubicacion,
@@ -110,3 +112,4 @@ function MapaConRutas() {
 }
 
 export default MapaConRutas;
+*/}

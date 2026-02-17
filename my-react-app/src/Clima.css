@@ -1,0 +1,15 @@
+.contenedorClima{
+    background: linear-gradient(90deg, #222,#0c3866,#0c3866,#222 );
+    width: 100%;   
+    box-shadow: 2px 2px 10px rgba( 206, 24, 30, 0.2);
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 50px;
+    border-radius: 30px;
+}
+.contenedorClima p{
+    font-family: ligas;
+    font-size: 20px;
+    color:aliceblue;
+}

@@ -8,6 +8,11 @@
     display: flex;
 
 }
+.divClima{
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
 .Logo{
     width: 20%;
     justify-content: center;

@@ -1,11 +1,11 @@
 import './Sucursales.css';
 import Mapa from './Mapa';
-import MapaConRutas from './MapaConRutas';
+//import MapaConRutas from './MapaConRutas';     <MapaConRutas />
 function Sucursales(){
     return(
         <div className="ContenedorSucursal"> 
         <Sucursa  />
-        <MapaConRutas />
+       
         </div>
         
     );

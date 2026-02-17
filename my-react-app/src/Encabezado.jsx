@@ -7,6 +7,7 @@ import instagram from "./assets/RS/insta.png";
 import PropTypes from 'prop-types';
 
 import './Encabezado.css';
+import Clima from "./Clima";
 
 function Encabezado({cambiarVista}) {
     return (
@@ -16,6 +17,9 @@ function Encabezado({cambiarVista}) {
                 <Menu cambiarVista={cambiarVista} />
                 <Redes/>
             </div> 
+            <div className="divClima">
+            <Clima  />
+            </div>
         </div>
     );
 }
@@ -39,6 +43,7 @@ function Menu({cambiarVista}){
             <li onClick={() => cambiarVista("Contacto")}>Contacto</li>   
             <li onClick={() => cambiarVista("Sucursales")}>Sucursales</li>
         </ul>
+         
     </div>
     );
 }
@@ -53,6 +58,7 @@ function Redes(){
                 <li><a href="#"><img src={youtube} alt="YouTube logo" /></a></li>
                 <li><a href="#"><img src={instagram} alt="Instagram logo" /></a></li>
             </ul>
+            
         </div>
     );
 }
