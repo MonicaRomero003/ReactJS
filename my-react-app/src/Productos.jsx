@@ -1,14 +1,53 @@
+import { useEffect, useState } from 'react';
+import api from './Services/api';
 import './Productos.css';
 
 function Productos(){
     return(
         <div className="ContenedorProductos"> 
-        <Producto  />
+        <Producto />
         </div>
         
     );
 }
 
+function Producto(){
+  const [productos, setProductos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+
+  useEffect(() => {
+    const obtenerProductos = async () => {
+      try{
+        const response = await api.get('/products');
+        setProductos(response.data);
+      }catch(error){
+        console.error('Error al obtener productos:', error)
+      }finally{
+        setCargando(false);
+      }
+    };
+    obtenerProductos();
+  },[]);
+
+  if(cargando) return <p>Cargando productos...</p>
+
+  return( 
+    <div className='Productos'>
+      {productos.map((producto) => (
+          <div key={producto.id}>
+            <p>{producto.title}</p>
+            <p>{producto.price}</p>
+            <img src={producto.image}></img>
+          </div>
+      )
+      )}
+    </div>
+  )
+}
+
+export default Productos;
+
+/*
 function Producto() {
   const prod = [
     {
@@ -90,5 +129,4 @@ function Producto() {
     </div>
   )
 }
-
-export default Productos;
+*/
