@@ -1,0 +1,118 @@
+/* Estilos para la tabla de usuarios — paleta del proyecto */
+.ContenedorUsuarios{
+	width: 90%;
+	margin: 20px auto;
+	padding: 18px;
+	border-radius: 12px;
+	background: linear-gradient(180deg, rgba(34,34,34,0.85), rgba(34,34,34,0.95));
+	box-shadow: 0 6px 20px rgba(0,2,34,0.6);
+}
+
+.Usuarios{
+	overflow-x: auto;
+}
+
+.Usuarios table{
+	width: 100%;
+	border-collapse: collapse;
+	font-family: general;
+	color: #fff;
+	background: linear-gradient(#111, #111);
+	border-radius: 8px;
+}
+
+.Usuarios thead th{
+	padding: 12px 16px;
+	text-align: left;
+	font-family: titulos;
+	font-size: 16px;
+	color: #ffc20e;
+	background: linear-gradient(90deg, #0c3866, #49c0b6);
+	border-bottom: 3px solid rgba(255,194,14,0.08);
+}
+
+.Usuarios tbody td{
+	padding: 12px 16px;
+	font-size: 14px;
+	color: #e6e6e6;
+	border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.Usuarios tbody tr:nth-child(even){
+	background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+.Usuarios tbody tr:hover{
+	background-color: rgba(73,192,182,0.06);
+	transform: translateY(-1px);
+}
+
+.Usuarios table th:first-child,
+.Usuarios table td:first-child{
+	width: 80px;
+}
+
+/* Responsive: permitir scroll horizontal en móviles */
+@media (max-width: 700px){
+	.Usuarios thead th{
+		font-size: 13px;
+		padding: 10px 8px;
+	}
+	.Usuarios tbody td{
+		font-size: 13px;
+		padding: 8px 8px;
+	}
+}
+
+/* Mensaje de carga */
+.ContenedorUsuarios p{
+	color: #ffc20e;
+	font-family: general;
+	font-size: 16px;
+	text-align: center;
+	margin: 10px 0;
+}
+
+/* Botones dentro de la tabla */
+.Usuarios button{
+	appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	padding: 8px 12px;
+	margin: 0 6px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: ligas;
+	font-size: 14px;
+	transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.Usuarios button:first-of-type{
+	background: linear-gradient(90deg, #0c3866, #49c0b6);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(73,192,182,0.12);
+}
+
+.Usuarios button:last-of-type{
+	background: linear-gradient(90deg, #ce181e, #ff6b6b);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(206,24,30,0.12);
+}
+
+.Usuarios button:hover{
+	transform: translateY(-2px) scale(1.02);
+}
+
+.Usuarios button:active{
+	transform: translateY(0) scale(0.99);
+	opacity: 0.95;
+}
+
+/* Líneas / separadores */
+hr, .divider{
+	border: 0;
+	height: 1px;
+	margin: 14px 0;
+	background: linear-gradient(90deg, rgba(12,56,102,0.0), rgba(255,194,14,0.45), rgba(12,56,102,0.0));
+}
+

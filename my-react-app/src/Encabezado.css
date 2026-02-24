@@ -24,12 +24,12 @@
     
 }
 .menuDiv{
-    width:60%;
+    width:auto;
     align-items: center;
     justify-content: center;
 }
 .menuDiv ul {
-    width: 80%;
+    width: 100%;
     display: flex;
     list-style: none;
     gap: 30px;
