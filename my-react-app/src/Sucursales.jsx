@@ -1,5 +1,5 @@
 import './Sucursales.css';
-import Mapa from './Mapa';
+import Mapa from './Mapa.jsx';
 //import MapaConRutas from './MapaConRutas';     <MapaConRutas />
 function Sucursales(){
     return(

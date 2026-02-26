@@ -36,13 +36,13 @@ function Carrito(){
       {carritos.map((carrito) => (
         <div className='tarjetaCarro'>
           <h3>Carrito ID: {carrito.id}</h3>
-          <p>Usuario ID: {carrito.usuario_id}</p>
+          <p>Usuario ID: {carrito.userId}</p>
           <p>Fecha: {carrito.date}</p>
             <p>Productos:</p>
             <ul>
                 {carrito.products.map((producto, index) => (
                     <li key={index}>
-                        Producto ID: {producto.product_id}, 
+                        Producto ID: {producto.productId}, 
                         Cantidad: {producto.quantity}
                     </li>
                 ))}

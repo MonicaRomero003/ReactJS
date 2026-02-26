@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import api from './Services/api';
 import './Productos.css';
+import RegistrarProductos from './RegistrarProductos';
 
 function Productos(){
     return(
-        <div className="ContenedorProductos"> 
+        <div className="ContenedorProductos">
+        <RegistrarProductos /> 
         <Producto />
         </div>
         
@@ -38,6 +40,7 @@ function Producto(){
             <p>{producto.title}</p>
             <p>{producto.price}</p>
             <img src={producto.image}></img>
+            <button> Añadir al carrito</button><button>Comprar</button>
           </div>
       )
       )}

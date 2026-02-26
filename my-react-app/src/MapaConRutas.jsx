@@ -1,5 +1,5 @@
      
-    
+ /*   
 import { useEffect, useState } from 'react';
 import { GoogleMap, useJsApiLoader, Marker, Polyline } from '@react-google-maps/api';
 
@@ -112,3 +112,4 @@ function MapaConRutas() {
 }
 
 export default MapaConRutas;
+*/
