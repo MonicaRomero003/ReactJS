@@ -42,11 +42,14 @@ function Carrito(){
             <ul>
                 {carrito.products.map((producto, index) => (
                     <li key={index}>
-                        Producto ID: {producto.productId}, 
-                        Cantidad: {producto.quantity}
+                        Producto ID: {producto.productId} , 
+                        Cantidad: {producto.quantity},
+                        <button>X</button>
+                        <button>Actualizar cantidad</button>
                     </li>
                 ))}
             </ul>
+          <button>Eliminar carrito</button>
         </div>
       ))}
     </div>
