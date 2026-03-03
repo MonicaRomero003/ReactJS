@@ -40,3 +40,36 @@
 @media (max-width: 600px){
     .Carritos{ grid-template-columns: 1fr; }
 }
+.tarjetaCarro  button{
+	appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	padding: 8px 12px;
+	margin: 0 6px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: ligas;
+	font-size: 14px;
+	transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.tarjetaCarro button:first-of-type{
+	background: linear-gradient(90deg, #0c3866, #49c0b6);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(73,192,182,0.12);
+}
+
+.tarjetaCarro button:last-of-type{
+	background: linear-gradient(90deg, #ce181e, #ff6b6b);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(206,24,30,0.12);
+}
+
+.tarjetaCarro button:hover{
+	transform: translateY(-2px) scale(1.02);
+}
+
+.tarjetaCarro button:active{
+	transform: translateY(0) scale(0.99);
+	opacity: 0.95;
+}

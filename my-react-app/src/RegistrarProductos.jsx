@@ -10,10 +10,44 @@ function RegistrarProductos() {
         
     </div>
   );
+}
 
   function RegistroP() {
+      /*const {productos, setProductos} = useState({
+      title: '',
+      price: '',
+      description: '',
+      category: '',
+      image: ''
+    });
+
+    const handleChange = (e) => {
+      setProductos({
+        ...productos,
+        [e.target.name]: e.target.value
+      });
+    }
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      try{
+        const response = await api.post('/products', productos);
+        setProductos(response.data);
+        alert('Producto registrado con éxito');
+        console.log(productos);
+        setProductos({
+          title: '',
+          price: '',
+          description: '',
+          category: '',
+          image: ''
+        });
+      } catch(error){
+        console.error('Error al registrar producto:', error);
+      }
+ */
     return(
-        <form className="formularioProductos">
+        <form onSubmit={handleSubmit} className="formularioProductos">
             <label>Nombre del producto:</label>
             <input type="text" name="title"></input>
             <label>Precio:</label>
@@ -28,6 +62,6 @@ function RegistrarProductos() {
         </form>
     )
 }
-}
+
 
 export default RegistrarProductos;

@@ -14,6 +14,7 @@ function Productos(){
 }
 
 function Producto(){
+  
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
 
