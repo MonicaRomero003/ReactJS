@@ -4,49 +4,62 @@ import './Productos.css';
 import RegistrarProductos from './RegistrarProductos';
 
 function Productos(){
-    return(
-        <div className="ContenedorProductos">
-        <RegistrarProductos /> 
-        <Producto />
-        </div>
-        
-    );
-}
-
-function Producto(){
-  
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(null);
+
+  const obtenerProductos = async () => {
+    try{
+      setCargando(true);
+      setError(null);
+      const response = await api.get('/products');
+      setProductos(response.data);
+    }catch(error){
+      console.error('Error al obtener productos:', error);
+      setError('Error al cargar los productos. Por favor, intenta de nuevo.');
+    }finally{
+      setCargando(false);
+    }
+  };
+
+  const removerProducto = async (id) => {
+    try{
+      await api.delete(`/products/${id}`);
+      obtenerProductos();
+    }catch(error){
+      console.error('Error al eliminar producto:', error);
+    }
+  };
 
   useEffect(() => {
-    const obtenerProductos = async () => {
-      try{
-        const response = await api.get('/products');
-        setProductos(response.data);
-      }catch(error){
-        console.error('Error al obtener productos:', error)
-      }finally{
-        setCargando(false);
-      }
-    };
     obtenerProductos();
   },[]);
 
-  if(cargando) return <p>Cargando productos...</p>
+  if(cargando) return <p>Cargando productos...</p>;
+  if(error) return <div><p>{error}</p><button onClick={obtenerProductos}>Reintentar</button></div>;
+  if(productos.length === 0) return <p>No hay productos disponibles.</p>
 
-  return( 
-    <div className='Productos'>
-      {productos.map((producto) => (
+  return(
+    <div className="ContenedorProductos">
+      <RegistrarProductos 
+        productoEditado={productoSeleccionado}
+        limpiarSeleccion={() => setProductoSeleccionado(null)}
+        onActualizacionExitosa={obtenerProductos}
+      />
+      <div className='Productos'>
+        {productos.map((producto) => (
           <div key={producto.id}>
             <p>{producto.title}</p>
-            <p>{producto.price}</p>
-            <img src={producto.image}></img>
-            <button> Añadir al carrito</button><button>Comprar</button>
+            <p>${producto.price}</p>
+            <img src={producto.image} alt={producto.title}></img>
+            <button onClick={() => setProductoSeleccionado(producto)}>Editar</button>
+            <button onClick={() => removerProducto(producto.id)}>Eliminar</button>
           </div>
-      )
-      )}
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
 export default Productos;

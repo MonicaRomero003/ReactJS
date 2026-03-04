@@ -1,12 +1,16 @@
 import {useState, useEffect} from 'react';
 import api from './Services/api';
 import "./RegistrarUsuarios.css"
-function RegistrarUsuarios() {
+function RegistrarUsuarios({usuarioEditado, limpiarSeleccion, onActualizacionExitosa}) {
   return (
     <div>  
         <h1 className="h1">Registrar Usuarios</h1>
         <div className="divForm">
-        <RegistroU />
+        <RegistroU 
+          usuarioEditado={usuarioEditado}
+          limpiarSeleccion={limpiarSeleccion}
+          onActualizacionExitosa={onActualizacionExitosa}
+        />
         </div>
         
     </div>

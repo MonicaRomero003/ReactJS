@@ -7,21 +7,38 @@ function Usuarios(){
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState(null);
+  
   const obtenerUsuarios = async () => {
       try{
+        setCargando(true);
+        setError(null);
         const response = await api.get('/users');
         setUsuarios(response.data);
       }catch(error){
-        console.error('Error al obtener usuarios:', error)
+        console.error('Error al obtener usuarios:', error);
+        setError('Error al cargar los usuarios. Por favor, intenta de nuevo.');
       }finally{
         setCargando(false);
       }
     };
+  
+  const removerUsuario = async (id) => {
+    try{
+      await api.delete(`/users/${id}`);
+      obtenerUsuarios();
+    }catch(error){
+      console.error('Error al eliminar usuario:', error);
+    }
+  };
+
   useEffect(() => {
     obtenerUsuarios();
   },[]);
     
-  if(cargando) return <p>Cargando usuarios...</p>
+  if(cargando) return <p>Cargando usuarios...</p>;
+  if(error) return <div><p>{error}</p><button onClick={obtenerUsuarios}>Reintentar</button></div>;
+  if(usuarios.length === 0) return <p>No hay usuarios disponibles.</p>;
 
     return(
         <div className="ContenedorUsuarios"> 
@@ -29,7 +46,6 @@ function Usuarios(){
         usuarioEditado={usuarioSeleccionado} 
         limpiarSeleccion={() => setUsuarioSeleccionado(null)} 
         onActualizacionExitosa={obtenerUsuarios}/>
-        <Usuario />
         <div className='Usuarios'>
 
         <table border="1" width="600">
@@ -44,7 +60,7 @@ function Usuarios(){
                 <th>Acciones</th>
             </tr>
             {usuarios.map((usuario) => (
-            <tr>
+            <tr key={usuario.id}>
                 <th>{usuario.id}</th>
                 <th>{usuario.email}</th>
                 <th>{usuario.username}</th>
