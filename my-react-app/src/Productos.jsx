@@ -53,6 +53,7 @@ function Productos(){
             <p>{producto.title}</p>
             <p>${producto.price}</p>
             <img src={producto.image} alt={producto.title}></img>
+            <button> Agregar al carrito</button>
             <button onClick={() => setProductoSeleccionado(producto)}>Editar</button>
             <button onClick={() => removerProducto(producto.id)}>Eliminar</button>
           </div>

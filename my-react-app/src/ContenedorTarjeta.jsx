@@ -7,6 +7,7 @@ import Usuarios from './Usuarios';
 import Carrito from './Carrito';
 import PropTypes from 'prop-types';
 import './ContenedorTarjetas.css';
+import Login from './Login';
 
 
 function ContenedorTarjeta({vista}) {
@@ -18,7 +19,8 @@ function ContenedorTarjeta({vista}) {
         "Contacto": <Contacto/>,
         "Sucursales": <Sucursales/>,
         "Usuarios": <Usuarios/>,
-        "Carrito": <Carrito/>
+        "Carrito": <Carrito/>,
+        "Login": <Login/>
     }
     return (
         <div className="ContenedorTarjeta">
