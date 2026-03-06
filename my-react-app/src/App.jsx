@@ -4,14 +4,17 @@ import ContenedorTarjeta from "./ContenedorTarjeta.jsx";
 import Encabezado from "./Encabezado.jsx";
 import ContenedorInformacion from "./Informacion.jsx";
 import ContenedorPie from "./ContenedorPie.jsx";
+import { AuthProvider } from './AuthContext.jsx';
 
 
 function App(){
   const [vista, setVista] = useState("Inicio"); 
     return (
       <div className="App">
-        <Encabezado cambiarVista={setVista} />
-        <ContenedorTarjeta vista={vista} />
+        <AuthProvider>
+          <Encabezado cambiarVista={setVista} />
+          <ContenedorTarjeta vista={vista} />
+        </AuthProvider>
         <ContenedorInformacion /> 
         <ContenedorPie />
       </div>

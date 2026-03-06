@@ -5,6 +5,7 @@ import tiktok from "./assets/RS/tiktok.png";
 import youtube from "./assets/RS/youtube.png";
 import instagram from "./assets/RS/insta.png";
 import PropTypes from 'prop-types';
+import { useAuth } from './AuthContext.jsx';
 
 import './Encabezado.css';
 import Clima from "./Clima";
@@ -33,18 +34,28 @@ function Logo(){
 }
 
 function Menu({cambiarVista}){
+    const {isLoggedIn, logout} =useAuth();
     return (
     <div className="menuDiv">
         <ul>
             <li onClick={() => cambiarVista("Inicio")}>Inicio</li>
             <li onClick={() => cambiarVista("AcercaDe")}>Acerca de</li>
-            <li onClick={() => cambiarVista("Usuarios")}>Usuarios</li>
+            {isLoggedIn ? (
+                <>
+                    <li onClick={() => cambiarVista("Usuarios")}>Usuarios</li>
+                    <li onClick={() => cambiarVista("Carrito")}>Carrito</li>
+                    <li onClick={logout}>Cerrar sesión</li>
+                </>):
+                (
+                    <li onClick={() => cambiarVista("Login")}>Login</li>
+                )}
+           
             <li onClick={() => cambiarVista("Productos")}>Productos</li>
             <li onClick={() => cambiarVista("Galeria")}>Galeria</li>
             <li onClick={() => cambiarVista("Contacto")}>Contacto</li>   
             <li onClick={() => cambiarVista("Sucursales")}>Sucursales</li>
-            <li onClick={() => cambiarVista("Carrito")}>Carrito</li>
-            <li onClick={() => cambiarVista("Login")}>Login</li>
+            
+            
         </ul>
          
     </div>
