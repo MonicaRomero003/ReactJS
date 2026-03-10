@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import api from './Services/api';
 import './Login.css';
+import { useAuth } from './AuthContext';
 
 function Login() {
   return (
@@ -11,6 +12,7 @@ function Login() {
 }
 
 function Log() {
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -26,6 +28,7 @@ function Log() {
       const token = response?.data?.token;
 
       if (token) {
+        login(token);
         console.log('Token:', token);
         alert('Bienvenido');
       } else {
