@@ -13,7 +13,7 @@ function App(){
       <div className="App">
         <AuthProvider>
           <Encabezado cambiarVista={setVista} />
-          <ContenedorTarjeta vista={vista} />
+          <ContenedorTarjeta vista={vista} cambiarVista={setVista} />
         </AuthProvider>
         <ContenedorInformacion /> 
         <ContenedorPie />

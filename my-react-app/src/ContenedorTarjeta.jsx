@@ -8,9 +8,10 @@ import Carrito from './Carrito';
 import PropTypes from 'prop-types';
 import './ContenedorTarjetas.css';
 import Login from './Login';
+import RegistrarUsuarios from './RegistrarUsuarios';
 
 
-function ContenedorTarjeta({vista}) {
+function ContenedorTarjeta({vista, cambiarVista}) {
     const vistas = {
         "Inicio": <Inicio/>,
         "AcercaDe": <AcercaDe/>,
@@ -20,7 +21,8 @@ function ContenedorTarjeta({vista}) {
         "Sucursales": <Sucursales/>,
         "Usuarios": <Usuarios/>,
         "Carrito": <Carrito/>,
-        "Login": <Login/>
+        "Login": <Login cambiarVista={cambiarVista}/>,
+        "RegistrarUsuarios": <RegistrarUsuarios/>
     }
     return (
         <div className="ContenedorTarjeta">
@@ -54,7 +56,8 @@ function Tarjeta(props){
 }
 
 ContenedorTarjeta.propTypes = {
-    vista: PropTypes.string.isRequired
+    vista: PropTypes.string.isRequired,
+    cambiarVista: PropTypes.func.isRequired
 };
 
 export default ContenedorTarjeta;

@@ -2,19 +2,25 @@ import { useState } from 'react';
 import api from './Services/api';
 import './Login.css';
 import { useAuth } from './AuthContext';
+import PropTypes from 'prop-types';
 
-function Login() {
+function Login({ cambiarVista }) {
   return (
     <div className="contenedorLogin">
-      <Log />
+      <Log cambiarVista={cambiarVista} />
     </div>
   );
 }
 
-function Log() {
+function Log({ cambiarVista }) {
   const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleCrearCuenta = (e) => {
+    e.preventDefault();
+    cambiarVista('RegistrarUsuarios');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,11 +67,19 @@ function Log() {
           required
         />
         <button type="submit">Acceder</button>
-        <a href="#">Crear cuenta</a>
+        <a href="#" onClick={handleCrearCuenta}>Crear cuenta</a>
         <a href="#">Recuperar contraseña</a>
       </form>
     </div>
   );
 }
+
+Login.propTypes = {
+  cambiarVista: PropTypes.func.isRequired,
+};
+
+Log.propTypes = {
+  cambiarVista: PropTypes.func.isRequired,
+};
 
 export default Login;
