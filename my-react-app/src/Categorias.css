@@ -1,0 +1,226 @@
+.CategoriasSeccion {
+	width: min(1240px, 94%);
+	margin: 0 auto;
+	padding: 40px 0 70px;
+	color: #ffffff;
+}
+
+.CategoriasHero {
+	position: relative;
+	overflow: hidden;
+	padding: 32px;
+	margin-bottom: 28px;
+	border-radius: 24px;
+	background:
+		radial-gradient(circle at top left, rgba(73, 192, 182, 0.22), transparent 32%),
+		radial-gradient(circle at top right, rgba(206, 24, 30, 0.25), transparent 34%),
+		linear-gradient(135deg, rgba(12, 56, 102, 0.96), rgba(34, 34, 34, 0.98), rgba(206, 24, 30, 0.92));
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.CategoriasHero::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.05) 45%, transparent 75%);
+	pointer-events: none;
+}
+
+.CategoriasEyebrow {
+	margin: 0 0 10px;
+	color: #49c0b6;
+	font-size: 14px;
+	font-family: ligas;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+.CategoriasHero h1 {
+	margin: 0;
+	color: #ffc20e;
+	font-size: clamp(30px, 4vw, 48px);
+	font-family: titulos;
+}
+
+.CategoriasIntro {
+	width: min(760px, 100%);
+	margin: 14px 0 0;
+	color: #dceeff;
+	font-size: 18px;
+	line-height: 1.7;
+	font-family: general;
+}
+
+.CategoriasEstado {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
+	min-height: 260px;
+	padding: 36px;
+	border-radius: 22px;
+	background: linear-gradient(180deg, rgba(12, 56, 102, 0.82), rgba(34, 34, 34, 0.94));
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+	color: #dceeff;
+	text-align: center;
+	font-family: general;
+}
+
+.CategoriasEstado p {
+	margin: 0;
+	font-size: 18px;
+}
+
+.CategoriasEstadoError button {
+	border: none;
+	padding: 12px 22px;
+	border-radius: 999px;
+	background: linear-gradient(90deg, #49c0b6, #007cc0);
+	color: #ffffff;
+	font-family: ligas;
+	font-size: 16px;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.CategoriasEstadoError button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 24px rgba(73, 192, 182, 0.28);
+}
+
+.CategoriasLoader {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	border: 4px solid rgba(255, 255, 255, 0.16);
+	border-top-color: #49c0b6;
+	border-right-color: #ffc20e;
+	animation: giroCategorias 1s linear infinite;
+}
+
+.CategoriasGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+	gap: 24px;
+}
+
+.CategoriaCard {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	border-radius: 22px;
+	background:
+		linear-gradient(rgba(34, 34, 34, 0.95), rgba(34, 34, 34, 0.95)) padding-box,
+		linear-gradient(135deg, #0c3866, #49c0b6, #222, #ce181e, #ffc20e) border-box;
+	border: 2px solid transparent;
+	box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.CategoriaCard:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
+}
+
+.CategoriaCard::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(circle at top, rgba(73, 192, 182, 0.2), transparent 42%);
+	opacity: 0;
+	transition: opacity 0.25s ease;
+	pointer-events: none;
+}
+
+.CategoriaCard:hover::before {
+	opacity: 1;
+}
+
+.CategoriaImagenWrap {
+	padding: 24px 24px 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.CategoriaImagen {
+	width: 180px;
+	height: 180px;
+	object-fit: contain;
+	filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45));
+}
+
+.CategoriaContenido {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	padding: 0 24px 26px;
+	font-family: general;
+}
+
+.CategoriaBadge {
+	width: fit-content;
+	padding: 7px 12px;
+	border-radius: 999px;
+	background: rgba(73, 192, 182, 0.16);
+	color: #49c0b6;
+	font-size: 13px;
+	font-family: ligas;
+	letter-spacing: 1px;
+}
+
+.CategoriaContenido h2 {
+	margin: 0;
+	color: #ffc20e;
+	font-family: titulos;
+	font-size: 30px;
+}
+
+.CategoriaContenido p {
+	margin: 0;
+	color: #d7e8f7;
+	font-size: 15px;
+	line-height: 1.7;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+@keyframes giroCategorias {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (max-width: 768px) {
+	.CategoriasSeccion {
+		width: 92%;
+		padding-top: 24px;
+	}
+
+	.CategoriasHero {
+		padding: 24px;
+	}
+
+	.CategoriasIntro {
+		font-size: 16px;
+	}
+
+	.CategoriaContenido h2 {
+		font-size: 24px;
+	}
+
+	.CategoriaImagen {
+		width: 150px;
+		height: 150px;
+	}
+}

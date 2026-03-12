@@ -9,9 +9,11 @@ import PropTypes from 'prop-types';
 import './ContenedorTarjetas.css';
 import Login from './Login';
 import RegistrarUsuarios from './RegistrarUsuarios';
-
+import Categorias from './Categorias';
+import { useAuth } from './AuthContext.jsx';
 
 function ContenedorTarjeta({vista, cambiarVista}) {
+    const { isLoggedIn } = useAuth();
     const vistas = {
         "Inicio": <Inicio/>,
         "AcercaDe": <AcercaDe/>,
@@ -22,7 +24,8 @@ function ContenedorTarjeta({vista, cambiarVista}) {
         "Usuarios": <Usuarios/>,
         "Carrito": <Carrito/>,
         "Login": <Login cambiarVista={cambiarVista}/>,
-        "RegistrarUsuarios": <RegistrarUsuarios/>
+        "RegistrarUsuarios": <RegistrarUsuarios/>,
+        "Categorias": isLoggedIn ? <Categorias/> : <Inicio/>
     }
     return (
         <div className="ContenedorTarjeta">

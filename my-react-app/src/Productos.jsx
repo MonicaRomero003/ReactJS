@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import api from './Services/api';
 import './Productos.css';
 import RegistrarProductos from './RegistrarProductos';
+import { useAuth } from './AuthContext.jsx';
 
 function Productos(){
+  const { isLoggedIn } = useAuth();
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -36,17 +38,25 @@ function Productos(){
     obtenerProductos();
   },[]);
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setProductoSeleccionado(null);
+    }
+  }, [isLoggedIn]);
+
   if(cargando) return <p>Cargando productos...</p>;
   if(error) return <div><p>{error}</p><button onClick={obtenerProductos}>Reintentar</button></div>;
   if(productos.length === 0) return <p>No hay productos disponibles.</p>
 
   return(
     <div className="ContenedorProductos">
-      <RegistrarProductos 
-        productoEditado={productoSeleccionado}
-        limpiarSeleccion={() => setProductoSeleccionado(null)}
-        onActualizacionExitosa={obtenerProductos}
-      />
+      {isLoggedIn && (
+        <RegistrarProductos 
+          productoEditado={productoSeleccionado}
+          limpiarSeleccion={() => setProductoSeleccionado(null)}
+          onActualizacionExitosa={obtenerProductos}
+        />
+      )}
       <div className='Productos'>
         {productos.map((producto) => (
           <div key={producto.id}>
@@ -54,8 +64,12 @@ function Productos(){
             <p>${producto.price}</p>
             <img src={producto.image} alt={producto.title}></img>
             <button> Agregar al carrito</button>
-            <button onClick={() => setProductoSeleccionado(producto)}>Editar</button>
-            <button onClick={() => removerProducto(producto.id)}>Eliminar</button>
+            {isLoggedIn && (
+              <>
+                <button onClick={() => setProductoSeleccionado(producto)}>Editar</button>
+                <button onClick={() => removerProducto(producto.id)}>Eliminar</button>
+              </>
+            )}
           </div>
         ))}
       </div>
