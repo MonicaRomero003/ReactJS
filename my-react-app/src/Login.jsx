@@ -14,7 +14,7 @@ function Login({ cambiarVista }) {
 
 function Log({ cambiarVista }) {
   const { login } = useAuth();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleCrearCuenta = (e) => {
@@ -26,8 +26,8 @@ function Log({ cambiarVista }) {
     e.preventDefault();
 
     try {
-      const response = await api.post('/auth/login', {
-        username,
+      const response = await api.post('/usuarios/login', {
+        email,
         password,
       });
 
@@ -53,9 +53,9 @@ function Log({ cambiarVista }) {
         <label>Usuario:</label>
         <input
           type="text"
-          name="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          email="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <label>Contraseña</label>

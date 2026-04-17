@@ -13,7 +13,7 @@ function Usuarios(){
       try{
         setCargando(true);
         setError(null);
-        const response = await api.get('/users');
+        const response = await api.get('/usuarios');
         setUsuarios(response.data);
       }catch(error){
         console.error('Error al obtener usuarios:', error);
@@ -25,7 +25,7 @@ function Usuarios(){
   
   const removerUsuario = async (id) => {
     try{
-      await api.delete(`/users/${id}`);
+      await api.delete(`/usuarios/${id}`);
       obtenerUsuarios();
     }catch(error){
       console.error('Error al eliminar usuario:', error);
@@ -51,23 +51,25 @@ function Usuarios(){
         <table border="1" width="600">
             <tr> 
                 <th width="100"> ID </th> 
-                <th> Email </th>
-                <th> UserName </th>
-                <th> Password </th>
-                <th > Nombre </th>
-                <th> Segundo nombre </th>
+                <th> Nombre </th>
+                <th> Direccion </th>
                 <th> Telefono </th>
-                <th>Acciones</th>
+                <th> Email </th>
+                <th > Password </th>
+                <th> Rol </th>
+                <th> Fecha registro </th>
+                
             </tr>
             {usuarios.map((usuario) => (
             <tr key={usuario.id}>
                 <th>{usuario.id}</th>
+                <th>{usuario.nombre}</th>
+                <th>{usuario.direccion}</th>
+                <th>{usuario.telefono}</th>
                 <th>{usuario.email}</th>
-                <th>{usuario.username}</th>
                 <th>{usuario.password}</th>
-                <th>{usuario.name.firstname}</th>
-                <th>{usuario.name.lastname}</th>
-                <th>{usuario.phone}</th>
+                <th>{usuario.rol}</th>
+                <th>{usuario.fecha_registro}</th>
                 <th><button onClick={() => setUsuarioSeleccionado(usuario)}>Editar</button>
                 <button onClick={() => removerUsuario(usuario.id)}>Eliminar</button></th>
             </tr>

@@ -15,7 +15,7 @@ function Productos(){
     try{
       setCargando(true);
       setError(null);
-      const response = await api.get('/products');
+      const response = await api.get('/productos');
       setProductos(response.data);
     }catch(error){
       console.error('Error al obtener productos:', error);
@@ -27,7 +27,7 @@ function Productos(){
 
   const removerProducto = async (id) => {
     try{
-      await api.delete(`/products/${id}`);
+      await api.delete(`/productos/${id}`);
       obtenerProductos();
     }catch(error){
       console.error('Error al eliminar producto:', error);
@@ -60,9 +60,12 @@ function Productos(){
       <div className='Productos'>
         {productos.map((producto) => (
           <div key={producto.id}>
-            <p>{producto.title}</p>
-            <p>${producto.price}</p>
-            <img src={producto.image} alt={producto.title}></img>
+            <p>{producto.nombre}</p>
+            <p>{producto.descripcion}</p>
+            <img src={producto.imagen} alt={producto.nombre}></img>
+            <p>Precio: ${producto.precio}</p>
+            <p>Stock: {producto.stock}</p>
+            <p>Categoría: {producto.id_categoria}</p>
             <button> Agregar al carrito</button>
             {isLoggedIn && (
               <>
