@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Categorias.css';
 import { useAuth } from './AuthContext.jsx';
 
-const API_CATEGORIAS = 'https://themealdb.com/api/json/v1/1/categories.php';
+const API_CATEGORIAS = 'http://localhost:8000/api/categorias';
 
 function Categorias() {
     const { isLoggedIn } = useAuth();
@@ -16,7 +16,11 @@ function Categorias() {
             setCargando(true);
             setError('');
             const response = await axios.get(API_CATEGORIAS);
-            setCategorias(response.data?.categories ?? []);
+            const datosCategorias = Array.isArray(response.data)
+                ? response.data
+                : response.data?.categories ?? response.data?.categorias ?? [];
+
+            setCategorias(datosCategorias);
         } catch (error) {
             console.error('Error al obtener categorías:', error);
             setError('No se pudieron cargar las categorías en este momento.');
@@ -43,7 +47,7 @@ function Categorias() {
         <section className="CategoriasSeccion">
             <div className="CategoriasHero">
                 <p className="CategoriasEyebrow">Explora el menú</p>
-                <h1>Categorías de platillos</h1>
+                <h1>Categorías</h1>
             </div>
 
             {cargando && (
@@ -63,19 +67,14 @@ function Categorias() {
             {!cargando && !error && (
                 <div className="CategoriasGrid">
                     {categorias.map((categoria) => (
-                        <article className="CategoriaCard" key={categoria.idCategory}>
+                        <article className="CategoriaCard" key={categoria.id ?? categoria.idCategory ?? categoria.nombre}>
                             <div className="CategoriaImagenWrap">
-                                <img
-                                    src={categoria.strCategoryThumb}
-                                    alt={categoria.strCategory}
-                                    className="CategoriaImagen"
-                                />
+                                <div className="CategoriaBadge">#{categoria.id ?? categoria.idCategory ?? 'N/A'}</div>
                             </div>
 
                             <div className="CategoriaContenido">
-                                <span className="CategoriaBadge">#{categoria.idCategory}</span>
-                                <h2>{categoria.strCategory}</h2>
-                                <p>{categoria.strCategoryDescription}</p>
+                                <span className="CategoriaBadge">Categoría</span>
+                                <h2>{categoria.nombre ?? categoria.strCategory ?? 'Sin nombre'}</h2>
                             </div>
                         </article>
                     ))}

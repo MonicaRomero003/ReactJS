@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
-import api from './Services/api';
+import axios from 'axios';
 import './RegistrarProductos.css';
+
+const API_PRODUCTOS = 'http://localhost:8000/api/productos';
+const API_CATEGORIAS = 'http://localhost:8000/api/categorias';
 
 function RegistrarProductos({productoEditado, limpiarSeleccion, onActualizacionExitosa}) {
   return (
@@ -25,6 +28,23 @@ function RegistrarProductos({productoEditado, limpiarSeleccion, onActualizacionE
     const [precio, setPrecio] = useState('');
     const [stock, setStock] = useState('');
     const [idCategoria, setIdCategoria] = useState('');
+    const [categorias, setCategorias] = useState([]);
+    const [cargandoCategorias, setCargandoCategorias] = useState(true);
+
+    useEffect(() => {
+      const obtenerCategorias = async () => {
+        try {
+          const response = await axios.get(API_CATEGORIAS);
+          const datos = Array.isArray(response.data) ? response.data : response.data?.categorias ?? [];
+          setCategorias(datos);
+        } catch (error) {
+          console.error('Error al obtener categorías:', error);
+        } finally {
+          setCargandoCategorias(false);
+        }
+      };
+      obtenerCategorias();
+    }, []);
 
     useEffect(() => {
       if(productoEditado){
@@ -50,22 +70,34 @@ function RegistrarProductos({productoEditado, limpiarSeleccion, onActualizacionE
 
     const handleSubmit = async (e) => {
       e.preventDefault();
+      const nombreLimpio = nombre.trim();
+      const descripcionLimpia = descripcion.trim();
+      const imagenLimpia = imagen.trim();
+      const precioNumero = Number(precio);
+      const stockNumero = Number(stock);
+      const categoriaSeleccionada = Number(idCategoria);
+
+      if (!nombreLimpio || !descripcionLimpia || !imagenLimpia || !precio || !stock || !idCategoria) {
+        alert('No dejes campos vacíos.');
+        return;
+      }
+
       const nuevoProducto = {
-        nombre,
-        descripcion,
-        imagen,
-        precio,
-        stock,
-        id_categoria: idCategoria,
+        nombre: nombreLimpio,
+        descripcion: descripcionLimpia,
+        imagen: imagenLimpia,
+        precio: precioNumero,
+        stock: stockNumero,
+        id_categoria: categoriaSeleccionada,
       };
       try{
         if(productoEditado){
-          const response = await api.put(`/productos/${productoEditado.id}`, nuevoProducto);
+          const response = await axios.put(`${API_PRODUCTOS}/${productoEditado.id}`, nuevoProducto);
           console.log('Producto actualizado:', response.data);
           alert('Producto actualizado con éxito');
           limpiarSeleccion();
         } else {
-          const response = await api.post('/productos', nuevoProducto);
+          const response = await axios.post(API_PRODUCTOS, nuevoProducto);
           console.log('Producto registrado:', response.data);
           alert('Producto registrado con éxito');
         }
@@ -96,8 +128,19 @@ function RegistrarProductos({productoEditado, limpiarSeleccion, onActualizacionE
         <label>Stock:</label>
         <input type="number" name="stock" value={stock} onChange={(e) => setStock(e.target.value)} required />
 
-        <label>ID Categoría:</label>
-        <input type="number" name="id_categoria" value={idCategoria} onChange={(e) => setIdCategoria(e.target.value)} required />
+        <label>Categoría:</label>
+        {cargandoCategorias ? (
+          <p>Cargando categorías...</p>
+        ) : (
+          <select name="id_categoria" value={idCategoria} onChange={(e) => setIdCategoria(e.target.value)} required>
+            <option value="">-- Selecciona una categoría --</option>
+            {categorias.map((categoria) => (
+              <option key={categoria.id} value={categoria.id}>
+                {categoria.id} - {categoria.nombre}
+              </option>
+            ))}
+          </select>
+        )}
 
             <button type="submit" name="registrar">{productoEditado ? 'Actualizar' : 'Registrar'}</button>
             {productoEditado && <button type="button" onClick={limpiarSeleccion}>Cancelar</button>}

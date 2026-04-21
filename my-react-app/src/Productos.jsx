@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
-import api from './Services/api';
+import axios from 'axios';
 import './Productos.css';
 import RegistrarProductos from './RegistrarProductos';
 import { useAuth } from './AuthContext.jsx';
 
+const API_PRODUCTOS = 'http://localhost:8000/api/productos';
+
 function Productos(){
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, rol, userId } = useAuth();
+  const isAdmin = rol === 'admin';
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
@@ -15,8 +19,8 @@ function Productos(){
     try{
       setCargando(true);
       setError(null);
-      const response = await api.get('/productos');
-      setProductos(response.data);
+      const response = await axios.get(API_PRODUCTOS);
+      setProductos(Array.isArray(response.data) ? response.data : response.data?.productos ?? []);
     }catch(error){
       console.error('Error al obtener productos:', error);
       setError('Error al cargar los productos. Por favor, intenta de nuevo.');
@@ -27,11 +31,61 @@ function Productos(){
 
   const removerProducto = async (id) => {
     try{
-      await api.delete(`/productos/${id}`);
+      await axios.delete(`${API_PRODUCTOS}/${id}`);
       obtenerProductos();
     }catch(error){
       console.error('Error al eliminar producto:', error);
     }
+  };
+
+  const obtenerOCrearCarrito = async () => {
+    if (!userId) {
+      throw new Error('Debes iniciar sesión para agregar productos al carrito.');
+    }
+
+    const response = await axios.get(`http://localhost:8000/api/carritos?id_usuario=${userId}`);
+    const carritos = Array.isArray(response.data) ? response.data : [];
+
+    if (carritos.length > 0) {
+      return carritos[0];
+    }
+
+    const carritoCreado = await axios.post('http://localhost:8000/api/carritos', {
+      fecha_creacion: new Date().toISOString(),
+      total: 0,
+      id_usuario: userId,
+    });
+
+    return carritoCreado.data;
+  };
+
+  const agregarAlCarrito = async (producto) => {
+    try {
+      const carrito = await obtenerOCrearCarrito();
+
+      await axios.post('http://localhost:8000/api/carrito-detalle', {
+        id_carrito: carrito.id,
+        id_producto: producto.id,
+        precio_unitario: Number(producto.precio),
+        cantidad: 1,
+      });
+
+      alert('Producto agregado al carrito');
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
+      alert(error?.response?.data?.message || error.message || 'No se pudo agregar al carrito');
+    }
+  };
+
+  const handleActualizacionExitosa = () => {
+    obtenerProductos();
+    setMostrarFormulario(false);
+    setProductoSeleccionado(null);
+  };
+
+  const handleCancelar = () => {
+    setMostrarFormulario(false);
+    setProductoSeleccionado(null);
   };
 
   useEffect(() => {
@@ -41,6 +95,7 @@ function Productos(){
   useEffect(() => {
     if (!isLoggedIn) {
       setProductoSeleccionado(null);
+      setMostrarFormulario(false);
     }
   }, [isLoggedIn]);
 
@@ -50,11 +105,16 @@ function Productos(){
 
   return(
     <div className="ContenedorProductos">
-      {isLoggedIn && (
+      {isAdmin && (
+        <button className="BtnAgregarProducto" onClick={() => setMostrarFormulario(!mostrarFormulario)}>
+          {mostrarFormulario ? 'Ocultar formulario' : 'Agregar producto'}
+        </button>
+      )}
+      {mostrarFormulario && isAdmin && (
         <RegistrarProductos 
           productoEditado={productoSeleccionado}
-          limpiarSeleccion={() => setProductoSeleccionado(null)}
-          onActualizacionExitosa={obtenerProductos}
+          limpiarSeleccion={handleCancelar}
+          onActualizacionExitosa={handleActualizacionExitosa}
         />
       )}
       <div className='Productos'>
@@ -66,10 +126,10 @@ function Productos(){
             <p>Precio: ${producto.precio}</p>
             <p>Stock: {producto.stock}</p>
             <p>Categoría: {producto.id_categoria}</p>
-            <button> Agregar al carrito</button>
-            {isLoggedIn && (
+            <button onClick={() => agregarAlCarrito(producto)}>Agregar al carrito</button>
+            {isAdmin && (
               <>
-                <button onClick={() => setProductoSeleccionado(producto)}>Editar</button>
+                <button onClick={() => {setProductoSeleccionado(producto); setMostrarFormulario(true);}}>Editar</button>
                 <button onClick={() => removerProducto(producto.id)}>Eliminar</button>
               </>
             )}

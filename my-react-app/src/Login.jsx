@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import api from './Services/api';
+import axios from 'axios';
 import './Login.css';
 import { useAuth } from './AuthContext';
 import PropTypes from 'prop-types';
+
+const API_LOGIN = 'http://localhost:8000/api/usuarios/login';
 
 function Login({ cambiarVista }) {
   return (
@@ -26,7 +28,7 @@ function Log({ cambiarVista }) {
     e.preventDefault();
 
     try {
-      const response = await api.post('/usuarios/login', {
+      const response = await axios.post(API_LOGIN, {
         email,
         password,
       });

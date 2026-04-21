@@ -9,11 +9,14 @@ import PropTypes from 'prop-types';
 import './ContenedorTarjetas.css';
 import Login from './Login';
 import RegistrarUsuarios from './RegistrarUsuarios';
+import RegistrarProductos from './RegistrarProductos';
 import Categorias from './Categorias';
 import { useAuth } from './AuthContext.jsx';
 
 function ContenedorTarjeta({vista, cambiarVista}) {
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, rol } = useAuth();
+    const isAdmin = rol === 'admin';
+    
     const vistas = {
         "Inicio": <Inicio/>,
         "AcercaDe": <AcercaDe/>,
@@ -21,10 +24,11 @@ function ContenedorTarjeta({vista, cambiarVista}) {
         "Galeria": <Galeria/>,
         "Contacto": <Contacto/>,
         "Sucursales": <Sucursales/>,
-        "Usuarios": <Usuarios/>,
+        "Usuarios": isAdmin ? <Usuarios/> : <Inicio/>,
         "Carrito": <Carrito/>,
         "Login": <Login cambiarVista={cambiarVista}/>,
-        "RegistrarUsuarios": <RegistrarUsuarios/>,
+        "RegistrarUsuarios": <RegistrarUsuarios soloCliente={true}/>,
+        "RegistrarProductos": isAdmin ? <RegistrarProductos/> : <Inicio/>,
         "Categorias": isLoggedIn ? <Categorias/> : <Inicio/>
     }
     return (

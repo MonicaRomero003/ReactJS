@@ -110,6 +110,32 @@
 	opacity: 0.95;
 }
 
+.BtnAgregarUsuario{
+	appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	padding: 10px 16px;
+	margin: 16px 0 24px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: ligas;
+	font-size: 15px;
+	background: linear-gradient(90deg, #0c3866, #49c0b6);
+	color: #fff;
+	box-shadow: 0 4px 12px rgba(73,192,182,0.12);
+	transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+}
+
+.BtnAgregarUsuario:hover{
+	transform: translateY(-2px) scale(1.02);
+	box-shadow: 0 6px 16px rgba(73,192,182,0.2);
+}
+
+.BtnAgregarUsuario:active{
+	transform: translateY(0) scale(0.99);
+	opacity: 0.95;
+}
+
 /* Líneas / separadores */
 hr, .divider{
 	border: 0;

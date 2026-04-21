@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
-import api from './Services/api';
+import axios from 'axios';
 import './Usuarios.css';
 import RegistrarUsuarios from './RegistrarUsuarios';
+import { useAuth } from './AuthContext.jsx';
+
+const API_USUARIOS = 'http://localhost:8000/api/usuarios';
 
 function Usuarios(){
+  const { rol } = useAuth();
+  const isAdmin = rol === 'admin';
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [usuarios, setUsuarios] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
@@ -13,8 +19,8 @@ function Usuarios(){
       try{
         setCargando(true);
         setError(null);
-        const response = await api.get('/usuarios');
-        setUsuarios(response.data);
+        const response = await axios.get(API_USUARIOS);
+        setUsuarios(Array.isArray(response.data) ? response.data : response.data?.usuarios ?? []);
       }catch(error){
         console.error('Error al obtener usuarios:', error);
         setError('Error al cargar los usuarios. Por favor, intenta de nuevo.');
@@ -25,11 +31,22 @@ function Usuarios(){
   
   const removerUsuario = async (id) => {
     try{
-      await api.delete(`/usuarios/${id}`);
+      await axios.delete(`${API_USUARIOS}/${id}`);
       obtenerUsuarios();
     }catch(error){
       console.error('Error al eliminar usuario:', error);
     }
+  };
+
+  const handleActualizacionExitosa = () => {
+    obtenerUsuarios();
+    setMostrarFormulario(false);
+    setUsuarioSeleccionado(null);
+  };
+
+  const handleCancelar = () => {
+    setMostrarFormulario(false);
+    setUsuarioSeleccionado(null);
   };
 
   useEffect(() => {
@@ -42,10 +59,18 @@ function Usuarios(){
 
     return(
         <div className="ContenedorUsuarios"> 
-  <RegistrarUsuarios       
-        usuarioEditado={usuarioSeleccionado} 
-        limpiarSeleccion={() => setUsuarioSeleccionado(null)} 
-        onActualizacionExitosa={obtenerUsuarios}/>
+          {isAdmin && (
+            <button className="BtnAgregarUsuario" onClick={() => setMostrarFormulario(!mostrarFormulario)}>
+              {mostrarFormulario ? 'Ocultar formulario' : 'Agregar usuario'}
+            </button>
+          )}
+          {mostrarFormulario && isAdmin && (
+            <RegistrarUsuarios       
+              usuarioEditado={usuarioSeleccionado} 
+              limpiarSeleccion={handleCancelar} 
+              onActualizacionExitosa={handleActualizacionExitosa}
+            />
+          )}
         <div className='Usuarios'>
 
         <table border="1" width="600">
@@ -70,8 +95,10 @@ function Usuarios(){
                 <th>{usuario.password}</th>
                 <th>{usuario.rol}</th>
                 <th>{usuario.fecha_registro}</th>
-                <th><button onClick={() => setUsuarioSeleccionado(usuario)}>Editar</button>
-                <button onClick={() => removerUsuario(usuario.id)}>Eliminar</button></th>
+                {isAdmin && (
+                  <th><button onClick={() => {setUsuarioSeleccionado(usuario); setMostrarFormulario(true);}}>Editar</button>
+                  <button onClick={() => removerUsuario(usuario.id)}>Eliminar</button></th>
+                )}
             </tr>
                   )
       )}
